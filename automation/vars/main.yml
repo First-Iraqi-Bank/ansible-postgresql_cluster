@@ -515,8 +515,8 @@ wal_g_json:  # config https://github.com/wal-g/wal-g#configuration
   - { option: "PGHOST", value: "{{ postgresql_unix_socket_dir }}" }
   - { option: "PGPORT", value: "{{ postgresql_port }}" }
   - { option: "PGUSER", value: "{{ patroni_superuser_username }}" }
-#  - { option: "AWS_S3_FORCE_PATH_STYLE", value: "true" }  # to use Minio.io S3-compatible storage
-#  - { option: "AWS_ENDPOINT", value: "http://minio:9000" }  # to use Minio.io S3-compatible storage
+  - { option: "AWS_S3_FORCE_PATH_STYLE", value: "true" }  # to use Minio.io S3-compatible storage
+  - { option: "AWS_ENDPOINT", value: "http://10.228.86.184:9000" }  # to use Minio.io S3-compatible storage
 #  - { option: "", value: "" }
 wal_g_archive_command: "{{ wal_g_path }} wal-push %p"
 wal_g_patroni_cluster_bootstrap_command: "{{ wal_g_path }} backup-fetch {{ postgresql_data_dir }} LATEST"

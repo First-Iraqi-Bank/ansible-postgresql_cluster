@@ -33,7 +33,7 @@ locale_gen:
 locale: "en_US.utf-8"
 
 # Configure swap space (if not already exists)
-swap_file_create: true  # or 'false'
+swap_file_create: false  # or 'false'
 swap_file_path: /swapfile
 swap_file_size_mb: '4096'  # change this value for your system
 
@@ -120,7 +120,8 @@ ssh_key_state: "present"
 ssh_known_hosts: "{{ groups['postgres_cluster'] }}"
 
 # List of public SSH keys. These keys will be added to the database server's  ~/.ssh/authorized_keys  file.
-ssh_public_keys: []
+ssh_public_keys:
+  - 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJMIf5Ve/DdbzT0JF3+nbYIxKfOEj+h71u5Yvo5bwYWW Anton_Cherlyonok@epam.com'
 
 # sudo
 sudo_users:
