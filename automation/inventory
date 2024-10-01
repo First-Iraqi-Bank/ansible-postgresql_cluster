@@ -14,6 +14,9 @@
 #10.128.64.140
 #10.128.64.142
 #10.128.64.143
+10.228.86.184
+10.228.86.185
+10.228.86.186
 
 # if dcs_exists: false and dcs_type: "consul"
 [consul_instances]  # recommendation: 3 or 5-7 nodes
@@ -34,12 +37,15 @@
 # PostgreSQL nodes
 [master]
 #10.128.64.140 hostname=pgnode01 postgresql_exists=false # patroni_tags="datacenter=dc1"
+10.228.86.184  hostname=devops-pg1h1 postgresql_exists=false # patroni_tags="datacenter=dc1"
 
 [replica]
 #10.128.64.142 hostname=pgnode02 postgresql_exists=false # patroni_tags="datacenter=dc1"
 #10.128.64.143 hostname=pgnode03 postgresql_exists=false # patroni_tags="datacenter=dc1"
 #10.128.64.144 hostname=pgnode04 postgresql_exists=false patroni_tags="datacenter=dc2"
 #10.128.64.145 hostname=pgnode04 postgresql_exists=false patroni_tags="datacenter=dc2" new_node=true
+10.228.86.185 hostname=devops-pg1h2 postgresql_exists=false # patroni_tags="datacenter=dc1"
+10.228.86.186 hostname=devops-pg1h3 postgresql_exists=false # patroni_tags="datacenter=dc1"
 
 [postgres_cluster:children]
 master
@@ -48,6 +54,7 @@ replica
 # if pgbackrest_install: true and "repo_host" is set
 [pgbackrest]  # optional (Dedicated Repository Host)
 #10.128.64.110
+10.228.86.184
 
 [pgbackrest:vars]
 #ansible_user='postgres'
@@ -57,9 +64,9 @@ replica
 [all:vars]
 ansible_connection='ssh'
 ansible_ssh_port='22'
-#ansible_user='root'
-#ansible_ssh_pass='secretpassword'  # "sshpass" package is required for use "ansible_ssh_pass"
-#ansible_ssh_private_key_file=
+ansible_user='debian'
+ansible_ssh_pass='debian'  # "sshpass" package is required for use "ansible_ssh_pass"
+ansible_ssh_private_key_file=~/.ssl/work.key
 #ansible_python_interpreter='/usr/bin/python3'
 
 [pgbackrest:vars]
