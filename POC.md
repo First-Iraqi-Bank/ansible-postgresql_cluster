@@ -1,3 +1,24 @@
+## VM
+Located at:
+https://hq-fib-vcsa01.fib.local/ui/app/folder;nav=v/urn:vmomi:Folder:group-v14929:2e683356-6528-4429-b53e-78ab46e2136b/vms/vms
+ ![alt text](image.png)
+
+ISO:
+ ![alt text](image-2.png)
+
+VM template:
+ ![alt text](image-1.png)
+
+Debian user/password:
+debian:debian
+network: dhcp
+
+$ cat /etc/ssh/sshd_config.d/01-ssh.conf
+PasswordAuthentication yes   #  in VM template set to 'no'
+PubkeyAuthentication yes
+
+
+
 ##### VM network (Ubuntu)
 sudo vim /etc/netplan/99-netcfg-vmware.yaml
 sudo netplan apply
@@ -56,4 +77,3 @@ sudo systemctl status minio.service
 ### Minio is already available at:
 http://10.228.86.184:9001 site a
 http://10.228.86.185:9001 site b
-
